@@ -3,7 +3,7 @@ erDiagram
     PESSOA_USUARIO ||--o{ EMPRESTIMO : faz
     PESSOA_FUNCIONARIO ||--o{ EMPRESTIMO : faz
     EMPRESTIMO ||--|{ LIVRO_EMPRESTADO : tem
-    EMPRESTIMO ||--|{ STATUS_EMPRESTIMO : tem
+    EMPRESTIMO ||--|{ HISTORICO_EMPRESTIMO : tem
     PESSOA_FUNCIONARIO }o--|| CARGO : tem
     PESSOA ||--|| PESSOA_USUARIO : é
     PESSOA ||--|| PESSOA_FUNCIONARIO : é
@@ -50,8 +50,8 @@ erDiagram
         int id_usuario FK
     }
 
-    STATUS_EMPRESTIMO {
-        int id_status_emprestimo PK
+    HISTORICO_EMPRESTIMO {
+        int id_historico_emprestimo PK
         int id_emprestimo FK
         timestamp data_evento
         string descricao
