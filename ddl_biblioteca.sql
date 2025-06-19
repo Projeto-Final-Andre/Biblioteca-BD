@@ -16,6 +16,7 @@ CREATE TABLE livro (
 CREATE TABLE autor (
     id_autor SERIAL PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
     nacionalidade VARCHAR(100)
 );
 
@@ -55,6 +56,7 @@ CREATE TABLE cargo (
 CREATE TABLE pessoa (
     id_pessoa SERIAL PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     data_nascimento DATE NOT NULL
 );
@@ -63,6 +65,7 @@ CREATE TABLE pessoa (
 CREATE TABLE pessoa_funcionario (
     id_pessoa INTEGER PRIMARY KEY,
     id_cargo INTEGER NOT NULL,
+    admissao DATE NOT NULL,
     FOREIGN KEY (id_cargo) REFERENCES cargo(id_cargo),
     FOREIGN KEY (id_pessoa) REFERENCES pessoa(id_pessoa) ON DELETE CASCADE
 );
@@ -119,13 +122,32 @@ CREATE TABLE emprestimo (
     FOREIGN KEY (id_usuario) REFERENCES pessoa_usuario(id_pessoa) ON DELETE CASCADE
 );
 
+-- Histórico de status do empréstimo
+CREATE TABLE historico_emprestimo (
+    id_historico_emprestimo SERIAL PRIMARY KEY,
+    id_emprestimo INTEGER NOT NULL,
+    data_evento TIMESTAMP NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    ordem INTEGER NOT NULL,
+    FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo) ON DELETE CASCADE
+);
+
 -- Livros emprestados
 CREATE TABLE livro_emprestado (
     id_livro_emprestado SERIAL PRIMARY KEY,
-    status_livro VARCHAR(30) NOT NULL DEFAULT 'Disponível'
-        CHECK (status_livro IN ('Disponível', 'Emprestado', 'Atrasado', 'Reservado')),
     id_emprestimo INTEGER NOT NULL,
     id_livro INTEGER NOT NULL,
     FOREIGN KEY (id_livro) REFERENCES livro(id_livro) ON DELETE CASCADE,
     FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo) ON DELETE CASCADE
+);
+
+-- Histórico de status dos livros emprestados
+CREATE TABLE historico_livro_emprestado (
+    id_historico_livro_emprestado SERIAL PRIMARY KEY,
+    id_livro_emprestado INTEGER NOT NULL,
+    data_evento TIMESTAMP NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    status_historico VARCHAR(50) NOT NULL,
+    ordem INTEGER NOT NULL,
+    FOREIGN KEY (id_livro_emprestado) REFERENCES livro_emprestado(id_livro_emprestado) ON DELETE CASCADE
 );
