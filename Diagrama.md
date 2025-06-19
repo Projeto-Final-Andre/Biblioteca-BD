@@ -3,12 +3,14 @@ erDiagram
     PESSOA_USUARIO ||--o{ EMPRESTIMO : faz
     PESSOA_FUNCIONARIO ||--o{ EMPRESTIMO : faz
     EMPRESTIMO ||--|{ LIVRO_EMPRESTADO : tem
+    EMPRESTIMO ||--|{ STATUS_EMPRESTIMO : tem
     PESSOA_FUNCIONARIO }o--|| CARGO : tem
     PESSOA ||--|| PESSOA_USUARIO : é
     PESSOA ||--|| PESSOA_FUNCIONARIO : é
     PESSOA }|--|| ENDERECO : tem
     PESSOA ||--|{ TELEFONE : tem
     PESSOA ||--|{ EMAIL : tem
+    LIVRO_EMPRESTADO ||--|{ HISTORICO_LIVRO_EMPRESTADO  : tem
     LIVRO_EMPRESTADO }o--|| LIVRO  : tem
     LIVRO }|--|{ LIVRO_AUTOR: tem
     LIVRO_AUTOR }|--|{ AUTOR: tem
@@ -26,13 +28,15 @@ erDiagram
     PESSOA {
         serial id_pessoa PK
         string nome
-        int cpf
+        string sobrenome
+        string cpf
         date data_nascimento
     }
 
     PESSOA_FUNCIONARIO {
         int id_pessoa PK, FK
         int id_cargo FK
+        date admissao
     }
 
     PESSOA_USUARIO {
@@ -44,20 +48,35 @@ erDiagram
         serial id_emprestimo PK
         int id_funcionario FK
         int id_usuario FK
-        date data_emprestimo
-        date data_devolucao
+    }
+
+    STATUS_EMPRESTIMO {
+        int id_status_emprestimo PK
+        int id_emprestimo FK
+        timestamp data_evento
+        string descricao
+        int ordem
     }
 
     LIVRO_EMPRESTADO {
         serial id_livro_emprestado PK
-        string status_livro
         int id_emprestimo FK
         int id_livro FK
+    }
+
+    HISTORICO_LIVRO_EMPRESTADO {
+        int id_historico_livro_emprestado PK
+        int id_livro_emprestado FK
+        timestamp data_evento
+        string descricao
+        string status_historico
+        int ordem
     }
 
     AUTOR {
         serial id_autor PK
         string nome
+        string sobrenome
         string nacionalidade
     }
 
@@ -78,13 +97,13 @@ erDiagram
     }
 
     LIVRO_AUTOR {
-        int id_livro FK
-        int id_autor FK
+        int id_livro PK, FK
+        int id_autor PK, FK
     }
 
     LIVRO_GENERO {
-        int id_livro FK
-        int id_genero FK
+        int id_livro PK, FK
+        int id_genero PK, FK
     }
 
     ENDERECO {
@@ -113,4 +132,5 @@ erDiagram
         string email
         int id_pessoa FK
     }
+
 ```
