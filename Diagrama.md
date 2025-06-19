@@ -69,7 +69,7 @@ erDiagram
         int id_livro_emprestado FK
         timestamp data_evento
         string descricao
-        string status_historico
+        boolean status_historico
         int ordem
     }
 

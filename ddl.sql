@@ -127,6 +127,7 @@ CREATE TABLE historico_emprestimo (
     id_emprestimo INTEGER NOT NULL,
     data_evento TIMESTAMP NOT NULL,
     descricao VARCHAR(255) NOT NULL,
+    status_historico BOOLEAN NOT NULL,
     ordem INTEGER NOT NULL,
     FOREIGN KEY (id_emprestimo) REFERENCES emprestimo(id_emprestimo) ON DELETE CASCADE
 );
@@ -146,7 +147,7 @@ CREATE TABLE historico_livro_emprestado (
     id_livro_emprestado INTEGER NOT NULL,
     data_evento TIMESTAMP NOT NULL,
     descricao VARCHAR(255) NOT NULL,
-    status_historico VARCHAR(50) NOT NULL,
+    status_historico BOOLEAN NOT NULL,
     ordem INTEGER NOT NULL,
     FOREIGN KEY (id_livro_emprestado) REFERENCES livro_emprestado(id_livro_emprestado) ON DELETE CASCADE
 );

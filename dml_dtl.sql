@@ -111,25 +111,29 @@ VALUES (5, '41', '976543210', 'Celular', 5);
 INSERT INTO emprestimo (id_emprestimo, id_funcionario, id_usuario, data_devolucao)
 VALUES (1, 2, 1, '2023-10-10');
 INSERT INTO emprestimo (id_emprestimo, id_funcionario, id_usuario, data_devolucao)
-VALUES (2, 2, 1, '2023-10-12');
+VALUES (2, 4, 1, '2023-10-12');
 INSERT INTO emprestimo (id_emprestimo, id_funcionario, id_usuario, data_devolucao)
 VALUES (3, 2, 3, '2023-10-15');
 INSERT INTO emprestimo (id_emprestimo, id_funcionario, id_usuario, data_devolucao)
-VALUES (4, 2, 5, '2023-10-18');
+VALUES (4, 4, 5, '2023-10-18');
 INSERT INTO emprestimo (id_emprestimo, id_funcionario, id_usuario, data_devolucao)
 VALUES (5, 2, 1, '2023-10-12');
 
 -- Inserir novos status e históricos de empréstimo:
-INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, ordem)
-VALUES (1, 2, '2023-10-01', 'Empréstimo realizado', 1);
-INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, ordem)
-VALUES (2, 2, '2023-10-01', 'Empréstimo realizado', 2);
-INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, ordem)
-VALUES (3, 2, '2023-10-02', 'Empréstimo realizado', 3);
-INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, ordem)
-VALUES (4, 2, '2023-10-03', 'Empréstimo aumentado', 4);
-INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, ordem)
-VALUES (5, 2, '2023-10-04', 'Empréstimo finalizado', 5);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (1, 1, '2023-10-01', 'Empréstimo realizado', FALSE, 1);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (2, 2, '2023-10-01', 'Empréstimo realizado', TRUE, 1);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (3, 3, '2023-10-02', 'Empréstimo realizado', TRUE, 1);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (4, 2, '2023-10-03', 'Empréstimo aumentado', TRUE, 2);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (5, 1, '2023-10-04', 'Empréstimo finalizado', TRUE, 2);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (6, 4, '2023-10-03', 'Empréstimo realizado', TRUE, 1);
+INSERT INTO historico_emprestimo (id_historico_emprestimo, id_emprestimo, data_evento, descricao, status_historico, ordem)
+VALUES (7, 5, '2023-10-03', 'Empréstimo realizado', TRUE, 1);
 
 -- Inserir um novo livro emprestado:
 INSERT INTO livro_emprestado (id_livro_emprestado, id_emprestimo, id_livro)
@@ -145,17 +149,17 @@ VALUES (5, 5, 5);
 
 -- Inserir novos status e históricos de livros emprestados:
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (1, 1, '2023-10-01', 'Emprestado', 'Ativo', 1);
+VALUES (1, 1, '2023-10-01', 'Emprestado', TRUE, 1);
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (2, 2, '2023-10-01', 'Emprestado', 'Ativo', 1);
+VALUES (2, 2, '2023-10-01', 'Emprestado', TRUE, 1);
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (3, 3, '2023-10-02', 'Emprestado', 'Ativo', 1);
+VALUES (3, 3, '2023-10-02', 'Emprestado', TRUE, 1);
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (4, 4, '2023-10-03', 'Empréstimo aumentado', 'Ativo', 2);
+VALUES (4, 4, '2023-10-03', 'Empréstimo aumentado', TRUE, 2);
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (5, 5, '2023-10-02', 'Emprestado', 'Inativo', 1);
+VALUES (5, 5, '2023-10-02', 'Emprestado', FALSE, 1);
 INSERT INTO historico_livro_emprestado (id_historico_livro_emprestado, id_livro_emprestado, data_evento, descricao, status_historico, ordem)
-VALUES (6, 5, '2023-10-04', 'Disponível', 'Ativo', 2);
+VALUES (6, 5, '2023-10-04', 'Disponível', TRUE, 2);
 
 SAVEPOINT original;
 
@@ -248,7 +252,6 @@ WHERE id_genero = 2;
 DELETE FROM genero 
 WHERE genero = 'Terror';
 
-
 -- Excluir um empréstimo:
 DELETE FROM emprestimo 
 WHERE id_usuario = 3;
@@ -268,7 +271,6 @@ DELETE FROM emprestimo WHERE id_emprestimo = 2;
 DELETE FROM livro WHERE id_livro = 1;
 DELETE FROM livro WHERE id_livro = 2;
 
+
 ROLLBACK TO original;
 COMMIT;
-
-ORDER BY data_evento ASC, ordem ASC
