@@ -116,8 +116,7 @@ CREATE TABLE emprestimo (
     id_emprestimo SERIAL PRIMARY KEY,
     id_funcionario INTEGER NOT NULL,
     id_usuario INTEGER NOT NULL,
-    data_emprestimo DATE NOT NULL,
-    data_devolucao DATE,
+    data_devolucao DATE NOT NULL,
     FOREIGN KEY (id_funcionario) REFERENCES pessoa_funcionario(id_pessoa) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES pessoa_usuario(id_pessoa) ON DELETE CASCADE
 );
