@@ -1,60 +1,96 @@
-# Projeto Final: Banco de Dados Relacional - Biblioteca <img src="img/icon_banco.png" width="10%" height="10%" align="right" valign="center"/> 
+# 📚 Projeto Final: Banco de Dados Relacional - Biblioteca
 
 <img src="img/print_banco.png" />
 
-# *Introdução & objetivo*
+# *🎯 Introdução & objetivo*
 
-Este projeto visa o desenvolvimento de uma plataforma interativa para o acompanhamento de pedidos de veículos Toyota. A aplicação será acessível em três modos: **Visitante**, **Cliente** e **Colaborador**, cada um com funcionalidades específicas e adaptadas às necessidades dos usuários.
+Esse projeto é um sistema de gerenciamento de uma biblioteca comunitária de porte médio, que foi implementada visando a aplicação dos conceitos estudados pela equipe durante as aulas de Banco de Dados. O banco de dados Biblioteca permite a visualização e manipulação dos dados que fazem parte de um sistema literário, gerenciando dados de empréstimos, funcionários e leitores.
+O projeto foi implementado no sistema de banco de dados relacional PostgreSQL, com sua modelagem realizada na plataforma digital do Mermaid Chart Inc., utilizando sua ferramenta baseada na linguagem JavaScript para a criação de um diagrama mais limpo e rápido.
+***Acessando a documentação (Projeto Final Banco de Dados Relacional - Biblioteca.docx), é possível visualizar todos os detalhes do projeto.***
 
-O objetivo é criar uma experiência digital completa que permita o acompanhamento de pedidos de veículos desde a solicitação até a entrega, promovendo transparência, interatividade e facilidade de uso. A proposta se diferencia por oferecer um acompanhamento detalhado, gamificação da jornada e suporte tanto automatizado quanto humano.
-
-# *Por que* implementar isto?
-
-- **Visão e propósito:** Melhorar a experiência do cliente Toyota com um ambiente digital moderno, intuitivo e interativo.
-- **Valor para o usuário:** Redução de incertezas quanto ao status do pedido e melhora na comunicação entre cliente e marca.
-- **Oportunidade de mercado:** A digitalização da jornada de compra é uma tendência crescente e esperada pelos consumidores.
-- **Oportunidade de monetização:** Inclusão de funcionalidades premium (ex: visualização 3D, gamificação, consultorias exclusivas, etc.).
-
----
-
-# ***Público alvo***
+# ***👥 Público alvo***
 
 | Perfil de usuário     | Descrição, necessidades e interesses.                                                                |
 |-----------------------|------------------------------------------------------------------------------------------------------|
-| Visitante             | Interessado em adquirir um veículo. Deseja explorar opções, fazer simulações para iniciar um pedido. |
-| Cliente               | Usuário que já iniciou ou finalizou a compra. Quer acompanhar o status e detalhes do pedido.         |
-| Colaborador (Interno) | Funcionário Toyota responsável pela gestão e análise dos pedidos e dados de satisfação.              |
+| Chefe             | Funcionário chefe da biblioteca, deseja que seus funcionários tenham informações organizados, mas sem acesso a funções que podem prejudicar o funcionamento da biblioteca, somente ele pode mudar configurações mais críticas |
+| Funcionário               | Funcionário comum da biblioteca, precisa registrar novos usuários, empréstimos, livros e suas respectivas informações relacionadas.         |
+| Frequentador da biblioteca | Usuário que precisa saber se realizou empréstimos, data de devolução, quer emprestar livros e ver quais estão disponíveis.        |
 
-# *Personas*
+# *📁 Usando o projeto localmente*
 
-1. **João, 45 anos, Chefe da biblioteca:** Interessado em um novo veículo para sua frota. Valoriza agilidade no processo e informações claras.
-2. **Rodrigo, 40 anos, Bibliotecário:** Primeira compra de carro com a Toyota. Quer entender todas as etapas e se sentir segura com a escolha.
-3. **Júlia, 42 anos, Frequentadora da biblioteca:** Utiliza a plataforma para monitorar e melhorar a jornada do cliente via feedback.
+Siga os passos a seguir para usar o projeto localmente.
 
----
+<h3>Pré-requisitos</h3>
 
-# *Requisitos Funcionais*
+É necessário ter instalado:
 
-1. **F1: Modo Visitante com simulação e pedido inicial.** Permite ao usuário explorar o processo sem login. **P1**
-2. **F2: Acompanhamento completo do pedido com etapas visuais animadas.** Desde aprovação até entrega. **P1**
-3. **F3: Login diferenciado para cliente e colaborador.** Ambientes distintos conforme o perfil. **P1**
-4. **F4: Assinatura digital de contrato e envio de documentos.** Para agilidade e segurança. **P2**
-5. **F5: Integração com sistemas internos para atualização de status.** Automatização do acompanhamento. **P2**
-6. **F6: Área de pesquisas de satisfação e análise de dados.** Exclusiva para colaboradores. **P2**
+* PostgreeSQL
 
-### *Casos de uso*
+<h3>Clonando</h3>
 
-> **Caso de uso 1:** Marcela acessa a plataforma como visitante, acessa o aplicativo com funções limitadas.  
->
-> **Caso de uso 2:** Natália realiza login como cliente, consulta documentos, e acompanha o status do seu pedido. 
->
-> **Caso de uso 3:** Rodrigo entra como colaborador, visualiza os pedidos, analisa dados de satisfação e identifica pontos de melhoria.
+Se preferir, pode clonar o projeto localmente para acessar os arquivos, se não, pode vizualizá-los pelo próprio GitHub.
 
----
+Para clonar o projeto, coloque o seguinte código no terminal:
 
-# *Requisitos Não Funcionais*
+```bash
+git clone https://github.com/Projeto-Final-Andre/Biblioteca-BD.git
+```
 
-1. **NF1:** Plataforma responsiva e otimizada para mobile. **P1**
-2. **NF2:** Sistema seguro para transmissão e armazenamento de dados. **P1**
-3. **NF3:** Interface intuitiva e amigável para usuários de todos os perfis. **P2**
-4. **NF4:** Atualização de status em tempo real, com mínima latência. **P2**
+<h3>Como rodar o projeto</h3>
+
+1. Abra o PostgreSQL
+2. Já tendo um servidor, abra o Query Tool (Alt + Shift + Q)
+3. Cole no espaço query:
+```bash
+CREATE DATABASE biblioteca;
+```
+4. Selecione a database biblioteca e abra o Query Tool novamente
+5. Abra o arquivo ddl.sql
+6. Copie todos os comandos exceto pelo listado acima
+7. Abra o arquivo dmt_dtl.sql
+8. Copie todos os comandos listados somente até o SAVEPOINT original;
+9. Cole no espaço query
+10. Para rodar testes de update e delete, copie os demais códigos do arquivo e cole no mesmo espaço, ***se quiser que as mudanças sejam permanentes, retire o ROLLBACK***
+11. Para realizar as consultas, abra o arquivo dql.sql, copie e cole os comandos individualmente para observar o resultado
+12. Para executar o controle de permissões, abra o arquivo dcl.sql, copie e cole todos os comandos no arquivo, para testes, clique em biblioteca/postgre@PostgreSQL na parte superior, < new conection >, selecione a database biblioteca e user, salve, digite a senha do usuário escolhido e digite comandos básicos para verificar se está funcionando.
+
+# *🤝 Contribuidores*
+
+Conheça os contribuidores desse projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/DreBartolomeu">
+        <img src="https://avatars.githubusercontent.com/u/138133545?v=4" width="100px;" alt="Andressa Bartolomeu"/><br>
+        <sub>
+          <b>Andressa Bartolomeu</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/NataliaNogueira1">
+        <img src="https://avatars.githubusercontent.com/u/198615971?v=4" width="100px;" alt="Natália Nogueira"/><br>
+        <sub>
+          <b>Natália Nogueira</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/MarcelaMulato">
+        <img src="https://avatars.githubusercontent.com/u/198286703?v=4" width="100px;" alt="Marcela Mulato"/><br>
+        <sub>
+          <b>Marcela Mulato</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Rodrigof981">
+        <img src="https://avatars.githubusercontent.com/u/195812121?v=4" width="100px;" alt="Rodrigo Soares"/><br>
+        <sub>
+          <b>Rodrigo Soares</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
