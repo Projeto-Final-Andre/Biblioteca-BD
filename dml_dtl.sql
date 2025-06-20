@@ -60,7 +60,7 @@ VALUES (1, 'Ana Clara', 'Silva', '12345678901', '2001-03-15');
 INSERT INTO pessoa_usuario (id_pessoa, cadastro_biblioteca)
 VALUES (1, '2023-03-15');
 INSERT INTO pessoa (id_pessoa, nome, sobrenome, cpf, data_nascimento)
-VALUES (2, 'João Pedro', 'Souza', '47565670001', '2002-11-09');
+VALUES (2, 'João Pedro', 'Souza', '47565670001', '1985-11-09');
 INSERT INTO pessoa_funcionario (id_pessoa, id_cargo, admissao)
 VALUES (2, 5, '2005-01-15');
 INSERT INTO pessoa (id_pessoa, nome, sobrenome, cpf, data_nascimento)
@@ -68,7 +68,7 @@ VALUES (3, 'Julia', 'Castanhas', '3465670001', '2006-10-06');
 INSERT INTO pessoa_usuario (id_pessoa, cadastro_biblioteca)
 VALUES (3, '2024-01-10');
 INSERT INTO pessoa (id_pessoa, nome, sobrenome, cpf, data_nascimento)
-VALUES (4, 'Rodrigo', 'Soares', '22565670001', '2004-07-19');
+VALUES (4, 'Rodrigo', 'Soares', '22565670001', '1990-07-19');
 INSERT INTO pessoa_funcionario (id_pessoa, id_cargo, admissao)
 VALUES (4, 1, '2005-02-11');
 INSERT INTO pessoa (id_pessoa, nome, sobrenome, cpf, data_nascimento)
